@@ -6,4 +6,43 @@
     </style>
 
     <style name="Theme.NIT3213Assessment2" parent="Base.Theme.NIT3213Assessment2" />
+
+    <style name="TextViewStyle">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextInputStyle">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextInputLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:background">#8FABABAB</item>
+        <item name="boxStrokeColor">#C7000000</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TitleTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

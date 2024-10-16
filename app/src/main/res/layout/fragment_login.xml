@@ -3,12 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--Basic layout of the page-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--Title for the page-->
+        <TextView
+            android:id="@+id/loginText"
+            style="@style/TitleTextViewStyle"
+            android:layout_height="50dp"
+            android:text="login" />
+
+        <!--Text input for user email address when logging into the app-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_input_layout"
+            style="@style/TextInputLayoutStyle"
+            app:boxStrokeColor="#C7000000"
+            app:layout_constraintBottom_toTopOf="@+id/password_input_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username_input"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Enter your Username"
+                android:inputType="text|textNoSuggestions" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Text input for user password when logging into the app-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:id="@+id/password_input_layout"
+            app:layout_constraintBottom_toTopOf="@+id/login_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputStyle"
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Enter your password"
+                android:inputType="text|textPassword|textNoSuggestions" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Button used to transfer user to the home page / dashboard-->
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#009294"
+            android:text="Login"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
+            app:rippleColor="#9C00F9FD" />
+    </LinearLayout>
 
 </FrameLayout>
