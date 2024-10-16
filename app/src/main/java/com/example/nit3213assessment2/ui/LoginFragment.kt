@@ -9,13 +9,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.nit3213assessment2.R
+import com.example.nit3213assessment2.data.LoginResponse
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
-
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(), View.OnClickListener {
@@ -57,7 +61,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         if (usernameinput == usernameCorrect && passwordinput == passwordCorrect) {
             Log.v("s8093929", "Correct Credentials Entered")
-            navc?.navigate(R.id.action_loginFragment_to_dashboardFragment)
+
+            lifecycleScope.launch {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.objectsState.collect { itemsInApiResponse ->
+                        if (itemsInApiResponse == LoginResponse(keypass = "fitness")) {
+                            navc?.navigate(R.id.action_loginFragment_to_dashboardFragment)
+                        }
+                    }
+                }
+            }
+
 
         } else {
             Log.v("s8093929", "Incorrect Username or Password,\n" +
