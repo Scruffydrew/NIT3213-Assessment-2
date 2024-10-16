@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 
 import com.example.nit3213assessment2.R
 
@@ -16,6 +18,8 @@ import com.example.nit3213assessment2.R
 class LoginFragment : Fragment(), View.OnClickListener {
 
     private val viewModel: LoginViewModel by viewModels()
+
+    private var navc: NavController?= null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +31,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navc = Navigation.findNavController(view)
 
         view.findViewById<Button>(R.id.loginButton)?.setOnClickListener(this)
 
@@ -42,6 +48,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
         if (usernameinput == usernameCorrect && passwordinput == passwordCorrect) {
             Log.v("s8093929", "Correct Credentials Entered")
+            navc?.navigate(R.id.action_loginFragment_to_dashboardFragment)
 
         } else {
             Log.v("s8093929", "Incorrect Username or Password,\n" +
