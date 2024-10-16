@@ -5,14 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.nit3213assessment2.data.keypassResponse
 import com.example.nit3213assessment2.data.ApiRepository
 import com.example.nit3213assessment2.data.Entity
-
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-
-class DashboardViewModel : ViewModel()  {
+@HiltViewModel
+class DashboardViewModel @Inject constructor() : ViewModel()  {
     private val repository = ApiRepository()
 
     private val _entitiesState = MutableStateFlow<List<Entity>>(emptyList())

@@ -5,11 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.nit3213assessment2.data.keypassRequest
 import com.example.nit3213assessment2.data.loginResponse
 import com.example.nit3213assessment2.data.ApiRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel()  {
+@HiltViewModel
+class LoginViewModel @Inject constructor() : ViewModel()  {
     private val repository = ApiRepository()
 
     private val mutableObjectsState = MutableStateFlow(loginResponse(keypass = ""))

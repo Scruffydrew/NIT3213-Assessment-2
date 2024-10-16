@@ -13,9 +13,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nit3213assessment2.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     @OptIn(DelicateCoroutinesApi::class)

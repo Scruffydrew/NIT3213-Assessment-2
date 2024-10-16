@@ -11,15 +11,26 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-
 import com.example.nit3213assessment2.R
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Named
 
 
+@AndroidEntryPoint
 class LoginFragment : Fragment(), View.OnClickListener {
 
     private val viewModel: LoginViewModel by viewModels()
 
-    private var navc: NavController?= null
+    private var navc: NavController ?= null
+
+    @Inject
+    @Named("Username")
+    lateinit var usernameCorrect:String
+
+    @Inject
+    @Named("Password")
+    lateinit var passwordCorrect: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +51,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        val usernameCorrect = "Lachlan"
-        val passwordCorrect = "s8093929"
 
         var usernameinput = view?.findViewById<TextView>(R.id.username_input)?.getText().toString()
         var passwordinput = view?.findViewById<TextView>(R.id.password_input)?.getText().toString()
