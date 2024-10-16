@@ -46,6 +46,9 @@ class viewHolder(view: View):RecyclerView.ViewHolder(view) {
             // Get the NavController from the item's view context
             val navController = Navigation.findNavController(itemView)
 
+            // Navigate to the detailsFragment and pass the bundle
+            navController.navigate(R.id.action_dashboardFragment_to_detailsFragment, bundle)
+
             clicklambdafunction.invoke()
         }
     }

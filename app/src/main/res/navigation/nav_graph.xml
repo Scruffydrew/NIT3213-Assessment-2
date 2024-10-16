@@ -18,5 +18,14 @@
         android:id="@+id/dashboardFragment"
         android:name="com.example.nit3213assessment2.ui.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.nit3213assessment2.ui.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>
