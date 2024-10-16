@@ -1,9 +1,8 @@
 package com.example.nit3213assessment2.network
 
-import com.example.nit3213assessment2.data.Entity
-import com.example.nit3213assessment2.data.keypassRequest
-import com.example.nit3213assessment2.data.keypassResponse
-import com.example.nit3213assessment2.data.loginResponse
+import com.example.nit3213assessment2.data.LoginRequest
+import com.example.nit3213assessment2.data.KeypassResponse
+import com.example.nit3213assessment2.data.LoginResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -12,11 +11,11 @@ import retrofit2.http.Path
 interface ApiRetrieve {
 
     @POST("/footscray/auth")
-    suspend fun getkeypass( @Body data: keypassRequest): loginResponse
+    suspend fun getkeypass( @Body data: LoginRequest): LoginResponse
 
     @GET("/dashboard/fitness")
-    suspend fun getAllEntities(): keypassResponse
+    suspend fun getAllEntities(): KeypassResponse
 
     @GET("entities/{id}")
-    suspend fun getObjectById(@Path("id") id: Int): keypassResponse
+    suspend fun getObjectById(@Path("id") id: Int): KeypassResponse
 }
