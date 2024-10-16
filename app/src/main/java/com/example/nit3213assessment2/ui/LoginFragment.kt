@@ -28,6 +28,16 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     private var navc: NavController ?= null
 
+    fun checkCredentials(usernameinput:String,
+                                 passwordinput:String,
+                                 correctUsername:String,
+                                 correctPassword:String) : Boolean {
+        if (usernameinput != correctUsername || passwordinput != correctPassword) {
+            return false
+        }
+        return true
+    }
+
     @Inject
     @Named("Username")
     lateinit var usernameCorrect:String
@@ -55,13 +65,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-
         var usernameinput = view?.findViewById<TextView>(R.id.username_input)?.getText().toString()
         var passwordinput = view?.findViewById<TextView>(R.id.password_input)?.getText().toString()
 
-        if (usernameinput == usernameCorrect && passwordinput == passwordCorrect) {
+        if (checkCredentials(usernameinput, passwordinput, usernameCorrect, passwordCorrect)) {
             Log.v("s8093929", "Correct Credentials Entered")
-
             lifecycleScope.launch {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.objectsState.collect { itemsInApiResponse ->
