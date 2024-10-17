@@ -44,9 +44,6 @@ class DetailsFragment : Fragment() {
         // Initialize the click lambda function with a default action
         clicklambdafunction = {}
 
-        // Initialize the TextView and RecyclerView
-        textView = view.findViewById(R.id.detailsTextViewTitle)
-
         // Retrieve the passed data from the arguments
         val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
         Log.v("s8093929", "Clicked item text: $selectedItemIndex")
@@ -60,8 +57,15 @@ class DetailsFragment : Fragment() {
                                                 // Log the index found
                         Log.v("s8093929", "Index of clicked exercise name: $selectedItemIndex")
 
-                        // Set the clicked item text in the TextView
-                        textView.text = itemsInApiResponse[selectedItemIndex!!].exerciseName
+                        // Set the Title for the Details Page based on the selected exercise
+                        view.findViewById<TextView>(R.id.detailsTextViewTitle).setText(itemsInApiResponse[selectedItemIndex!!].exerciseName)
+
+                        // Set text of each of the TextViews that are used to display the detailed information for the selected exercise
+                        view.findViewById<TextView>(R.id.muscleGroupTextView).setText(itemsInApiResponse[selectedItemIndex].muscleGroup)
+                        view.findViewById<TextView>(R.id.equipmentTextView).setText(itemsInApiResponse[selectedItemIndex].equipment)
+                        view.findViewById<TextView>(R.id.difficultyTextView).setText(itemsInApiResponse[selectedItemIndex].difficulty)
+                        view.findViewById<TextView>(R.id.caloriesTextView).setText("${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}")
+                        view.findViewById<TextView>(R.id.descriptionTextView).setText(itemsInApiResponse[selectedItemIndex].description)
 
                         // Create a list of detailed information for the selected exercise
                         val exerciseDetails = listOf(
@@ -71,13 +75,6 @@ class DetailsFragment : Fragment() {
                             "Calories Burned Per Hour: ${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}",
                             "Description: ${itemsInApiResponse[selectedItemIndex].description}"
                         )
-
-                        view.findViewById<TextView>(R.id.muscleGroupTextView).setText(itemsInApiResponse[selectedItemIndex].muscleGroup)
-                        view.findViewById<TextView>(R.id.equipmentTextView).setText(itemsInApiResponse[selectedItemIndex].equipment)
-                        view.findViewById<TextView>(R.id.difficultyTextView).setText(itemsInApiResponse[selectedItemIndex].difficulty)
-                        view.findViewById<TextView>(R.id.caloriesTextView).setText("${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}")
-                        view.findViewById<TextView>(R.id.descriptionTextView).setText(itemsInApiResponse[selectedItemIndex].description)
-
 
                         Log.v("s8093929", "List of Details: $exerciseDetails")
 
