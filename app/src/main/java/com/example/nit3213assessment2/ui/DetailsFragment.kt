@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nit3213assessment2.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +22,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(), View.OnClickListener {
 
     @OptIn(DelicateCoroutinesApi::class)
 
@@ -28,6 +32,8 @@ class DetailsFragment : Fragment() {
     private lateinit var clicklambdafunction: () -> Unit
 
     private val viewModel: DetailsViewModel by viewModels()
+
+    private var navc: NavController?= null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +47,9 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.v("s8093929", "DetailsFragment Created")
 
-        // Initialize the click lambda function with a default action
-        clicklambdafunction = {}
+        navc = Navigation.findNavController(view)
+
+        view.findViewById<ImageButton>(R.id.backImageButton)?.setOnClickListener(this)
 
         // Retrieve the passed data from the arguments
         val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
@@ -82,5 +89,10 @@ class DetailsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onClick(v: View?) {
+        Log.v("s8093929", "Back button pressed")
+        navc?.navigate(R.id.action_detailsFragment_to_dashboardFragment)
     }
 }

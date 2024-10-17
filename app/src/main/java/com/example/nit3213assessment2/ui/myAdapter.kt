@@ -44,7 +44,7 @@ class viewHolder(view: View):RecyclerView.ViewHolder(view) {
 
             // Create a Bundle to pass the data to the next fragment
             val bundle = Bundle()
-            bundle.putString("SelectedItemIndex", "${this.adapterPosition}")  // Pass the clicked text
+            bundle.putInt("SelectedItemIndex", this.adapterPosition)  // Pass the clicked text
 
 
 
