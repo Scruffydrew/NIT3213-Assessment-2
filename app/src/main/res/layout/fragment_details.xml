@@ -12,12 +12,30 @@
         android:layout_marginBottom="16dp"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/TitleTextViewStyle"
-            android:id="@+id/detailsTextViewTitle"
+        <LinearLayout
+            android:id="@+id/titlebarLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/backImageButton"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0"
+                android:src="?attr/homeAsUpIndicator" />
+
+            <TextView
+                android:id="@+id/detailsTextViewTitle"
+                style="@style/TitleTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_weight="0" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/muscleGroupLinearLayout"
