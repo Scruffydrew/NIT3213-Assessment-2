@@ -10,6 +10,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nit3213assessment2.R
+import dagger.Provides
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Named
 
 class myAdapter(private var dataList: List<String> = listOf(),private val clicklambdafunction: () -> Unit) : RecyclerView.Adapter<viewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
@@ -37,11 +40,13 @@ class viewHolder(view: View):RecyclerView.ViewHolder(view) {
     fun bind(item: String, clicklambdafunction: () -> Unit) {
         textView.text=item
         textView.setOnClickListener{
-            Log.v("s8093929", "${textView.text}")
+            Log.v("s8093929", "Index of selected item: ${this.adapterPosition}")
 
             // Create a Bundle to pass the data to the next fragment
             val bundle = Bundle()
-            bundle.putString("ClickedItemText", "${textView.text}")  // Pass the clicked text
+            bundle.putString("SelectedItemIndex", "${this.adapterPosition}")  // Pass the clicked text
+
+
 
             // Get the NavController from the item's view context
             val navController = Navigation.findNavController(itemView)

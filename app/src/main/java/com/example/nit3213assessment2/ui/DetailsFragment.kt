@@ -48,8 +48,8 @@ class DetailsFragment : Fragment() {
         textView = view.findViewById(R.id.detailsTextView)
 
         // Retrieve the passed data from the arguments
-        val ClickedItemText = arguments?.getString("ClickedItemText")
-        Log.v("s8093929", "Clicked item text: $ClickedItemText")
+        val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
+        Log.v("s8093929", "Clicked item text: $selectedItemIndex")
 
         viewModel.getAllObjects()
 
@@ -57,37 +57,27 @@ class DetailsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.entitiesState.collect { itemsInApiResponse ->
                     if (itemsInApiResponse.isNotEmpty()) {
-                        // Find the index based on exercise name
-                        val index = itemsInApiResponse.indexOfFirst { entity ->
-                            entity.exerciseName == ClickedItemText
-                        }
+                                                // Log the index found
+                        Log.v("s8093929", "Index of clicked exercise name: $selectedItemIndex")
 
-                        // Log the index found
-                        Log.v("s8093929", "Index of clicked exercise name: $index")
+                        // Set the clicked item text in the TextView
+                        textView.text = itemsInApiResponse[selectedItemIndex!!].exerciseName
 
-                        if (index != -1) {
-                            // Set the clicked item text in the TextView
-                            textView.text = itemsInApiResponse[index].exerciseName
+                        // Create a list of detailed information for the selected exercise
+                        val exerciseDetails = listOf(
+                            "Muscle Group: ${itemsInApiResponse[selectedItemIndex].muscleGroup}",
+                            "Equipment: ${itemsInApiResponse[selectedItemIndex].equipment}",
+                            "Difficulty: ${itemsInApiResponse[selectedItemIndex].difficulty}",
+                            "Calories Burned Per Hour: ${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}",
+                            "Description: ${itemsInApiResponse[selectedItemIndex].description}"
+                        )
 
-                            // Create a list of detailed information for the selected exercise
-                            val exerciseDetails = listOf(
-                                "Muscle Group: ${itemsInApiResponse[index].muscleGroup}",
-                                "Equipment: ${itemsInApiResponse[index].equipment}",
-                                "Difficulty: ${itemsInApiResponse[index].difficulty}",
-                                "Calories Burned Per Hour: ${itemsInApiResponse[index].caloriesBurnedPerHour}",
-                                "Description: ${itemsInApiResponse[index].description}"
-                            )
+                        Log.v("s8093929", "List of Details: $exerciseDetails")
 
-                            Log.v("s8093929", "List of Details: $exerciseDetails")
-
-                            detailsRecyclerView = view.findViewById(R.id.detailsRecyclerView)
-                            adapter = myAdapter(exerciseDetails,clicklambdafunction)
-                            detailsRecyclerView.adapter=adapter
-                            adapter.updateData(exerciseDetails)
-
-                        } else {
-                            textView.text = "Item not found"
-                        }
+                        detailsRecyclerView = view.findViewById(R.id.detailsRecyclerView)
+                        adapter = myAdapter(exerciseDetails,clicklambdafunction)
+                        detailsRecyclerView.adapter=adapter
+                        adapter.updateData(exerciseDetails)
 
                     }
                 }
