@@ -84,13 +84,13 @@ class DetailsFragment : Fragment(), View.OnClickListener {
                         )
 
                         Log.v("s8093929", "List of Details: $exerciseDetails")
-
                     }
                 }
             }
         }
     }
 
+    // When the back button is pressed transition from details fragment to dashboard fragment
     override fun onClick(v: View?) {
         Log.v("s8093929", "Back button pressed")
         navc?.navigate(R.id.action_detailsFragment_to_dashboardFragment)
