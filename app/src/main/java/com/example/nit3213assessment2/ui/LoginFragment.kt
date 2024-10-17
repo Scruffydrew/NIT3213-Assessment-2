@@ -38,6 +38,18 @@ class LoginFragment : Fragment(), View.OnClickListener {
         return true
     }
 
+    fun loginErrorReason(usernameinput:String,
+                         passwordinput:String,
+                         correctUsername:String,
+                         correctPassword:String) : String {
+        return when {
+            usernameinput != correctUsername && passwordinput != correctPassword -> "Both username and password are incorrect."
+            passwordinput != correctPassword -> "Password is incorrect"
+            usernameinput != correctUsername -> "Username is incorrect"
+            else -> "Unknown Error"
+        }
+    }
+
     @Inject
     @Named("Username")
     lateinit var usernameCorrect:String
@@ -75,6 +87,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     viewModel.objectsState.collect { itemsInApiResponse ->
                         if (itemsInApiResponse == LoginResponse(keypass = "fitness")) {
                             navc?.navigate(R.id.action_loginFragment_to_dashboardFragment)
+                        } else {
+                            view?.findViewById<TextView>(R.id.loginErrorTextView)?.setText("Failed to connect to API")
                         }
                     }
                 }
@@ -86,6 +100,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     "Current Entered Username is: $usernameinput \n" +
                     "Current Entered Password is: $passwordinput"
             )
+            var loginErrorMessage = loginErrorReason(usernameinput, passwordinput, usernameCorrect, passwordCorrect)
+            view?.findViewById<TextView>(R.id.loginErrorTextView)?.setText(loginErrorMessage)
+
         }
     }
 }

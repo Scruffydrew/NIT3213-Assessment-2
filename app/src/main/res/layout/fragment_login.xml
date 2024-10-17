@@ -17,7 +17,7 @@
             android:id="@+id/loginText"
             style="@style/TitleTextViewStyle"
             android:layout_height="50dp"
-            android:text="login" />
+            android:text="Login" />
 
         <!--Text input for user email address when logging into the app-->
         <com.google.android.material.textfield.TextInputLayout
@@ -60,6 +60,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--Button used to transfer user to the home page / dashboard-->
+        <TextView
+            android:id="@+id/loginErrorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:textColor="#FF0000" />
+
         <Button
             style="@style/ButtonStyle"
             android:id="@+id/loginButton"
@@ -75,6 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
             app:rippleColor="#9C00F9FD" />
+
     </LinearLayout>
 
 </FrameLayout>
