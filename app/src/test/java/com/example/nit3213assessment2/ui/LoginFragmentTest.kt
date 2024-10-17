@@ -8,6 +8,7 @@ class LoginFragmentTest {
 
     lateinit var loginfragment: LoginFragment
 
+    // checkCredentials Tests
     @Test
     fun Verify_Invalid_Password() {
         loginfragment=LoginFragment()
@@ -44,5 +45,40 @@ class LoginFragmentTest {
         assertTrue(result)
     }
 
+    // loginErrorReason Tests
+    @Test
+    fun LoginErrorMessage_Wrong_Username() {
+        loginfragment=LoginFragment()
+        var result = loginfragment.loginErrorReason(
+            "",
+            "s8093929",
+            "Lachlan",
+            "s8093929"
+        )
+        assertEquals(result, "Username is incorrect")
+    }
 
+    @Test
+    fun LoginErrorMessage_Wrong_Password() {
+        loginfragment=LoginFragment()
+        var result = loginfragment.loginErrorReason(
+            "Lachlan",
+            "",
+            "Lachlan",
+            "s8093929"
+        )
+        assertEquals(result, "Password is incorrect")
+    }
+
+    @Test
+    fun LoginErrorMessage_Wrong_Username_and_Password() {
+        loginfragment=LoginFragment()
+        var result = loginfragment.loginErrorReason(
+            "",
+            "",
+            "Lachlan",
+            "s8093929"
+        )
+        assertEquals(result, "Both username and password are incorrect")
+    }
 }

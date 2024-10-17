@@ -43,7 +43,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                          correctUsername:String,
                          correctPassword:String) : String {
         return when {
-            usernameinput != correctUsername && passwordinput != correctPassword -> "Both username and password are incorrect."
+            usernameinput != correctUsername && passwordinput != correctPassword -> "Both username and password are incorrect"
             passwordinput != correctPassword -> "Password is incorrect"
             usernameinput != correctUsername -> "Username is incorrect"
             else -> "Unknown Error"
