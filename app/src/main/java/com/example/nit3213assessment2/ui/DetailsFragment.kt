@@ -45,7 +45,7 @@ class DetailsFragment : Fragment() {
         clicklambdafunction = {}
 
         // Initialize the TextView and RecyclerView
-        textView = view.findViewById(R.id.detailsTextView)
+        textView = view.findViewById(R.id.detailsTextViewTitle)
 
         // Retrieve the passed data from the arguments
         val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
@@ -72,12 +72,14 @@ class DetailsFragment : Fragment() {
                             "Description: ${itemsInApiResponse[selectedItemIndex].description}"
                         )
 
-                        Log.v("s8093929", "List of Details: $exerciseDetails")
+                        view.findViewById<TextView>(R.id.muscleGroupTextView).setText(itemsInApiResponse[selectedItemIndex].muscleGroup)
+                        view.findViewById<TextView>(R.id.equipmentTextView).setText(itemsInApiResponse[selectedItemIndex].equipment)
+                        view.findViewById<TextView>(R.id.difficultyTextView).setText(itemsInApiResponse[selectedItemIndex].difficulty)
+                        view.findViewById<TextView>(R.id.caloriesTextView).setText("${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}")
+                        view.findViewById<TextView>(R.id.descriptionTextView).setText(itemsInApiResponse[selectedItemIndex].description)
 
-                        detailsRecyclerView = view.findViewById(R.id.detailsRecyclerView)
-                        adapter = myAdapter(exerciseDetails,clicklambdafunction)
-                        detailsRecyclerView.adapter=adapter
-                        adapter.updateData(exerciseDetails)
+
+                        Log.v("s8093929", "List of Details: $exerciseDetails")
 
                     }
                 }
