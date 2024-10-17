@@ -53,7 +53,13 @@ class DashboardFragment : Fragment() {
 
                         val exerciseList = mutableListOf<String>()
                         itemsInApiResponse.map { entity ->
-                            exerciseList += (entity.exerciseName)
+                            exerciseList += ("Exercise: ${entity.exerciseName}\n" +
+                            "Muscle Group: ${entity.muscleGroup}\n" +
+                            "Equipment: ${entity.equipment}\n" +
+                            "Difficulty: ${entity.difficulty}\n" +
+                            "Calories Burned Per Hour: ${entity.caloriesBurnedPerHour}")
+
+
                         }
 
                         recyclerView = view.findViewById(R.id.recyclerView)
