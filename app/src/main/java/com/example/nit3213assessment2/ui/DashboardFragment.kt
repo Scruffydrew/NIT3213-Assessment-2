@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +21,6 @@ class DashboardFragment : Fragment() {
 
     @OptIn(DelicateCoroutinesApi::class)
 
-    private lateinit var textView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: myAdapter
     private lateinit var clicklambdafunction: () -> Unit
@@ -42,8 +40,6 @@ class DashboardFragment : Fragment() {
 
         viewModel.getAllObjects()
 
-
-
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.entitiesState.collect { itemsInApiResponse ->
@@ -58,8 +54,6 @@ class DashboardFragment : Fragment() {
                             "Equipment: ${entity.equipment}\n" +
                             "Difficulty: ${entity.difficulty}\n" +
                             "Calories Burned Per Hour: ${entity.caloriesBurnedPerHour}")
-
-
                         }
 
                         recyclerView = view.findViewById(R.id.recyclerView)

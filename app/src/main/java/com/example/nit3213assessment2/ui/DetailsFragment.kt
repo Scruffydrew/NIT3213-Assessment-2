@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.viewModels
@@ -15,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 import com.example.nit3213assessment2.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -25,11 +23,6 @@ import kotlinx.coroutines.launch
 class DetailsFragment : Fragment(), View.OnClickListener {
 
     @OptIn(DelicateCoroutinesApi::class)
-
-    private lateinit var textView: TextView
-    private lateinit var detailsRecyclerView: RecyclerView
-    private lateinit var adapter: myAdapter
-    private lateinit var clicklambdafunction: () -> Unit
 
     private val viewModel: DetailsViewModel by viewModels()
 
