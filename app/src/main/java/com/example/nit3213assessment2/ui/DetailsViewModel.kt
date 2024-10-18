@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor() : ViewModel()  {
-    private val repository = ApiRepository()
+class DetailsViewModel @Inject constructor(private val repository : ApiRepository) : ViewModel()  {
 
     private val _entitiesState = MutableStateFlow<List<Entity>>(emptyList())
     val entitiesState: StateFlow<List<Entity>> = _entitiesState

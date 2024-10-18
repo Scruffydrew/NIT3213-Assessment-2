@@ -10,11 +10,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class DashboardViewModel @Inject constructor() : ViewModel()  {
-    private val repository = ApiRepository()
-
+class DashboardViewModel @Inject constructor(private val repository: ApiRepository) : ViewModel() { // Injecting the repository
     private val _entitiesState = MutableStateFlow<List<Entity>>(emptyList())
     val entitiesState: StateFlow<List<Entity>> = _entitiesState
 
