@@ -13,6 +13,6 @@ object NetworkModule {
 
     @Provides
     fun provideApiRetrieve(): ApiRetrieve {
-        return RetrofitClient().apiService // Ensure this returns the correct instance of ApiRetrieve
+        return RetrofitClient().apiService
     }
 }

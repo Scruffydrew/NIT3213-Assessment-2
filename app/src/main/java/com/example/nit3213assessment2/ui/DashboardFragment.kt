@@ -60,8 +60,6 @@ class DashboardFragment : Fragment() {
                         adapter = myAdapter(exerciseList,clicklambdafunction)
                         recyclerView.adapter=adapter
                         adapter.updateData(exerciseList)
-
-                        Log.v("s8093929", "item")
                     }
                 }
             }

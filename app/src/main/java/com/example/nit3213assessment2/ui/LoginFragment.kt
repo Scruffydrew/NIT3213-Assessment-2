@@ -28,6 +28,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     private var navc: NavController ?= null
 
+    // Comparing the inputted username and password with the correct username and password
     fun checkCredentials(usernameinput:String,
                                  passwordinput:String,
                                  correctUsername:String,
@@ -38,6 +39,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         return true
     }
 
+    // Get the reason for the error when logging in
     fun loginErrorReason(usernameinput:String,
                          passwordinput:String,
                          correctUsername:String,
@@ -50,10 +52,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    // Injecting the correct username
     @Inject
     @Named("Username")
     lateinit var usernameCorrect:String
 
+    // Injecting the correct password
     @Inject
     @Named("Password")
     lateinit var passwordCorrect: String
@@ -76,10 +80,13 @@ class LoginFragment : Fragment(), View.OnClickListener {
         viewModel.getkeypass()
     }
 
+    // Function for when the button is clicked
     override fun onClick(v: View?) {
+        // getting inputted username and password
         var usernameinput = view?.findViewById<TextView>(R.id.username_input)?.getText().toString()
         var passwordinput = view?.findViewById<TextView>(R.id.password_input)?.getText().toString()
 
+        // Checking the credentials
         if (checkCredentials(usernameinput, passwordinput, usernameCorrect, passwordCorrect)) {
             Log.v("s8093929", "Correct Credentials Entered")
             lifecycleScope.launch {
@@ -100,6 +107,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     "Current Entered Username is: $usernameinput \n" +
                     "Current Entered Password is: $passwordinput"
             )
+            // Getting the reason for the error when logging in and setting the loginErrorMessage to the error
             var loginErrorMessage = loginErrorReason(usernameinput, passwordinput, usernameCorrect, passwordCorrect)
             view?.findViewById<TextView>(R.id.loginErrorTextView)?.setText(loginErrorMessage)
 

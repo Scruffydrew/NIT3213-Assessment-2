@@ -54,7 +54,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.entitiesState.collect { itemsInApiResponse ->
                     if (itemsInApiResponse.isNotEmpty()) {
-                                                // Log the index found
+                        // Log the index found
                         Log.v("s8093929", "Index of clicked exercise name: $selectedItemIndex")
 
                         // Set the Title for the Details Page based on the selected exercise
@@ -66,17 +66,6 @@ class DetailsFragment : Fragment(), View.OnClickListener {
                         view.findViewById<TextView>(R.id.difficultyTextView).setText(itemsInApiResponse[selectedItemIndex].difficulty)
                         view.findViewById<TextView>(R.id.caloriesTextView).setText("${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}")
                         view.findViewById<TextView>(R.id.descriptionTextView).setText(itemsInApiResponse[selectedItemIndex].description)
-
-                        // Create a list of detailed information for the selected exercise
-                        val exerciseDetails = listOf(
-                            "Muscle Group: ${itemsInApiResponse[selectedItemIndex].muscleGroup}",
-                            "Equipment: ${itemsInApiResponse[selectedItemIndex].equipment}",
-                            "Difficulty: ${itemsInApiResponse[selectedItemIndex].difficulty}",
-                            "Calories Burned Per Hour: ${itemsInApiResponse[selectedItemIndex].caloriesBurnedPerHour}",
-                            "Description: ${itemsInApiResponse[selectedItemIndex].description}"
-                        )
-
-                        Log.v("s8093929", "List of Details: $exerciseDetails")
                     }
                 }
             }
