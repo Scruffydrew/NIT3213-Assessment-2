@@ -23,6 +23,7 @@ class DashboardFragment : Fragment() {
 
     @OptIn(DelicateCoroutinesApi::class)
 
+    // Injecting keypass from KeypassRepository
     @Inject
     lateinit var keypassRepository: KeypassRepository
 
@@ -43,7 +44,7 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Access the keypass from the repository
+        // Getting the keypass from keypassRepository
         val keypass = keypassRepository.keypass
 
         Log.v("s8093929", "The Received Keypass is : $keypass")

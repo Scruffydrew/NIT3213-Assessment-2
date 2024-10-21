@@ -26,6 +26,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
 
     @OptIn(DelicateCoroutinesApi::class)
 
+    // Injecting keypass from KeypassRepository
     @Inject
     lateinit var keypassRepository: KeypassRepository
 
@@ -53,7 +54,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
         Log.v("s8093929", "Clicked item text: $selectedItemIndex")
 
-        // Access the keypass from the repository
+        // Getting the keypass from keypassRepository
         val keypass = keypassRepository.keypass
 
         viewModel.getAllObjects(keypass)

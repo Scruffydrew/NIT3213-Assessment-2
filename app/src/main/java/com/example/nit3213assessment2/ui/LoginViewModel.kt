@@ -29,7 +29,7 @@ class LoginViewModel @Inject constructor(
             try {
                 val entities = repository.getkeypass(LoginRequest("s8093929", "Lachlan"))
                 mutableObjectsState.value = entities
-                // Store the keypass in the repository
+                // Store the keypass in KeypassRepository
                 keypassRepository.keypass = entities.keypass
             } catch (e: Exception) {
                 _errorState.value = "Error fetching objects: ${e.message}"
