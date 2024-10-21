@@ -1,5 +1,6 @@
 package com.example.nit3213assessment2.ui
 
+import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.nit3213assessment2.KeypassRepository
 import com.example.nit3213assessment2.data.ApiRepository
@@ -44,7 +45,7 @@ class DetailsViewModelTest {
         Dispatchers.setMain(testDispatcher)
 
         // Initialize the ViewModel with the mocked repository
-        viewModel = DetailsViewModel(repository)
+        viewModel = DetailsViewModel(repository, keypassRepository)
     }
 
     @Test
@@ -54,7 +55,7 @@ class DetailsViewModelTest {
             Entity("Push Up", "Chest", "None", "Easy", 300, "A basic upper body exercise."),
             Entity("Squat", "Legs", "None", "Medium", 400, "A basic lower body exercise.")
         )
-        coEvery { repository.getAllEntities(keypassRepository.keypass) } returns KeypassResponse(
+        coEvery { repository.getAllEntities("fitness") } returns KeypassResponse(
             entities = mockEntities,
             entityTotal = mockEntities.size
         )
@@ -79,7 +80,7 @@ class DetailsViewModelTest {
     fun getAllObjects_set_errorState_on_fetch_failure() = runTest(testDispatcher) {
         // Arrange
         val errorMessage = "Network error"
-        coEvery { repository.getAllEntities(keypassRepository.keypass) } throws RuntimeException(errorMessage)
+        coEvery { repository.getAllEntities("fitness") } throws RuntimeException(errorMessage)
 
         // Act
         viewModel.getAllObjects(keypassRepository.keypass)

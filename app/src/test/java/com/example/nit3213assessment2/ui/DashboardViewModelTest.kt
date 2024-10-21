@@ -51,7 +51,7 @@ class DashboardViewModelTest {
             Entity("Push Up", "Chest", "None", "Easy", 300, "A basic upper body exercise."),
             Entity("Squat", "Legs", "None", "Medium", 400, "A basic lower body exercise.")
         )
-        coEvery { repository.getAllEntities(keypassRepository.keypass) } returns KeypassResponse(
+        coEvery { repository.getAllEntities("fitness") } returns KeypassResponse(
             entities = mockEntities,
             entityTotal = mockEntities.size
         )
@@ -76,7 +76,7 @@ class DashboardViewModelTest {
     fun getAllObjects_errorState_on_fetch_failure() = runTest(testDispatcher) {
         // Arrange
         val errorMessage = "Network error"
-        coEvery { repository.getAllEntities(keypassRepository.keypass) } throws RuntimeException(errorMessage)
+        coEvery { repository.getAllEntities("fitness") } throws RuntimeException(errorMessage)
 
         // Act: Call the method using the mocked keypass value
         viewModel.getAllObjects(keypassRepository.keypass)
