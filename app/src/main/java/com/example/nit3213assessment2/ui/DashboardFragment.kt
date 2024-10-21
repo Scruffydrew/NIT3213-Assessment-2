@@ -11,15 +11,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nit3213assessment2.KeypassRepository
 import com.example.nit3213assessment2.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
     @OptIn(DelicateCoroutinesApi::class)
+
+    @Inject
+    lateinit var keypassRepository: KeypassRepository
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: myAdapter
@@ -38,7 +43,12 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getAllObjects()
+        // Access the keypass from the repository
+        val keypass = keypassRepository.keypass
+
+        Log.v("s8093929", "The Received Keypass is : $keypass")
+
+        viewModel.getAllObjects(keypass)
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

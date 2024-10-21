@@ -11,8 +11,8 @@ class ApiRepository @Inject constructor(
         return apiService.getkeypass(newObject)
     }
 
-    suspend fun getAllEntities(): KeypassResponse {
-        return apiService.getAllEntities()
+    suspend fun getAllEntities(keypass: String): KeypassResponse {
+        return apiService.getAllEntities(keypass)
     }
 
     suspend fun getObjectById(id: Int): KeypassResponse {

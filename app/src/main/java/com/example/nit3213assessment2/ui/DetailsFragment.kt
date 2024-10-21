@@ -14,15 +14,20 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.nit3213assessment2.KeypassRepository
 import com.example.nit3213assessment2.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment(), View.OnClickListener {
 
     @OptIn(DelicateCoroutinesApi::class)
+
+    @Inject
+    lateinit var keypassRepository: KeypassRepository
 
     private val viewModel: DetailsViewModel by viewModels()
 
@@ -48,7 +53,10 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
         Log.v("s8093929", "Clicked item text: $selectedItemIndex")
 
-        viewModel.getAllObjects()
+        // Access the keypass from the repository
+        val keypass = keypassRepository.keypass
+
+        viewModel.getAllObjects(keypass)
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

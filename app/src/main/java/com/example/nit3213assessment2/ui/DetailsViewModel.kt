@@ -23,10 +23,10 @@ class DetailsViewModel @Inject constructor(private val repository : ApiRepositor
     private val _errorState = MutableStateFlow<String?>(null)
     val errorState: StateFlow<String?> = _errorState
 
-    fun getAllObjects() {
+    fun getAllObjects(keypass:String) {
         viewModelScope.launch {
             try {
-                val response = repository.getAllEntities()
+                val response = repository.getAllEntities(keypass)
                 _entitiesState.value = response.entities
                 _entityTotalState.value = response.entityTotal
             } catch (e: Exception) {

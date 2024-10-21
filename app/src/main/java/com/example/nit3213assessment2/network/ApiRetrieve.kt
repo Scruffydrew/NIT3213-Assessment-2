@@ -13,8 +13,8 @@ interface ApiRetrieve {
     @POST("/footscray/auth")
     suspend fun getkeypass( @Body data: LoginRequest): LoginResponse
 
-    @GET("/dashboard/fitness")
-    suspend fun getAllEntities(): KeypassResponse
+    @GET("/dashboard/{keypass}")
+    suspend fun getAllEntities(@Path("keypass") keypass: String): KeypassResponse
 
     @GET("entities/{id}")
     suspend fun getObjectById(@Path("id") id: Int): KeypassResponse
