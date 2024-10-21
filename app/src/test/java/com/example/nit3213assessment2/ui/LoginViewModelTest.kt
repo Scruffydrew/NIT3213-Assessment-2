@@ -1,6 +1,7 @@
 package com.example.nit3213assessment2.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.nit3213assessment2.KeypassRepository
 import com.example.nit3213assessment2.data.ApiRepository
 import com.example.nit3213assessment2.data.LoginRequest
 import com.example.nit3213assessment2.data.LoginResponse
@@ -26,18 +27,20 @@ class LoginViewModelTest {
 
     private lateinit var viewModel: LoginViewModel
     private lateinit var repository: ApiRepository
+    private lateinit var keypassRepository: KeypassRepository
     private val testDispatcher = StandardTestDispatcher()
 
     @Before
     fun setUp() {
         // Mock the repository
         repository = mockk()
+        keypassRepository = mockk()
 
         // Set the dispatcher for the ViewModel's coroutine scope
         Dispatchers.setMain(testDispatcher)
 
         // Initialize the ViewModel with the mocked repository
-        viewModel = LoginViewModel(repository)
+        viewModel = LoginViewModel(repository, keypassRepository)
     }
 
     @Test
