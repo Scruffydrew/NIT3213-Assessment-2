@@ -1,6 +1,5 @@
 package com.example.nit3213assessment2.ui
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.nit3213assessment2.KeypassRepository
 import com.example.nit3213assessment2.data.ApiRepository
